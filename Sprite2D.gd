@@ -21,20 +21,21 @@ func _process(delta):
 		rotation_angle += 1.0 * delta 
 	if Input.is_action_pressed("move_left"):
 		rotation_angle -= 1.0 * delta
+		
+	mode7 = mode7.rotated(zaxis, rotation_angle);
+	drift_bump_forward = drift_bump_forward.rotated(zaxis, rotation_angle)
+	
 	if Input.is_action_pressed("move_down"):
 		drift_bump_direction = drift_bump_forward * -1
 	if Input.is_action_pressed("move_up"):
-		drift_bump_direction = drift_bump_forward
-		
-	mode7 = mode7.rotated(zaxis, rotation_angle);
+		drift_bump_direction = drift_bump_forward	
 		
 	scale_update.x -= fall_velocity * delta;
 	scale_update.y -= fall_velocity * delta;
-	# print("scale_update", scale_update);
+	print("scale_update", scale_update);
 	mode7 = mode7.scaled(scale_update);
 	
 	drift_update = drift_update.rotated(zaxis, rotation_angle);
-	drift_bump_direction = drift_bump_direction.rotated(zaxis, rotation_angle)
 	drift_update += drift_bump_direction;
 	mode7 = mode7.translated(drift_update);
 	
