@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2xl5qkc8byk6"]
+
+[ext_resource type="Texture2D" uid="uid://dh75gwq1g0x55" path="res://spritesheet.png" id="1_e6anm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7f4m"]
+size = Vector2(20, 25)
+
+[sub_resource type="Animation" id="Animation_kxh8w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hash3"]
+resource_name = "roll"
+length = 0.50001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6leky"]
+_data = {
+"RESET": SubResource("Animation_kxh8w"),
+"roll": SubResource("Animation_hash3")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_b7f4m")
+debug_color = Color(0.933333, 0.117647, 0.568627, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6leky")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, -4)
+texture = ExtResource("1_e6anm")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(2, 96, 127, 29)
+region_filter_clip_enabled = true

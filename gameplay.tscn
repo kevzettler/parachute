@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbikg36rekjek"]
+
+[ext_resource type="Script" path="res://gameplay.gd" id="1_l3cle"]
+[ext_resource type="PackedScene" uid="uid://d2yqfw6gvdh6j" path="res://landmass.tscn" id="1_nq6jf"]
+[ext_resource type="PackedScene" uid="uid://2qad0vv4xqgk" path="res://parachute.tscn" id="2_6bbl7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0mq8"]
+
+[node name="gameplay" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_l3cle")
+
+[node name="landmass" parent="." instance=ExtResource("1_nq6jf")]
+material = SubResource("ShaderMaterial_e0mq8")
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="parachute" parent="." instance=ExtResource("2_6bbl7")]
+position = Vector2(2.08165e-12, 2.08165e-12)

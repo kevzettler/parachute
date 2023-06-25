@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2yqfw6gvdh6j"]
+
+[ext_resource type="Shader" path="res://gameplay.gdshader" id="1_47eul"]
+[ext_resource type="Texture2D" uid="uid://cbfmpnab287u7" path="res://landmass.png" id="1_gwcsl"]
+[ext_resource type="Script" path="res://Sprite2D.gd" id="3_0b04i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8uq8e"]
+shader = ExtResource("1_47eul")
+shader_parameter/TRANSFORM = Projection(1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1)
+shader_parameter/DEPTH = Vector2(2.08165e-12, 2.08165e-12)
+shader_parameter/REPEAT_X = false
+shader_parameter/REPEAT_Y = false
+shader_parameter/FLIP = false
+
+[node name="landmass" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8uq8e")
+texture = ExtResource("1_gwcsl")
+script = ExtResource("3_0b04i")
