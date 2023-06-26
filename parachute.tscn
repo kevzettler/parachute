@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://2qad0vv4xqgk"]
+[gd_scene load_steps=7 format=3 uid="uid://2qad0vv4xqgk"]
 
 [ext_resource type="Texture2D" uid="uid://dh75gwq1g0x55" path="res://spritesheet.png" id="1_miujp"]
+[ext_resource type="Script" path="res://parachute.gd" id="1_pcfbm"]
 
 [sub_resource type="Animation" id="Animation_4sr4e"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("fly_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -15,6 +16,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("land_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_mgrcd"]
@@ -24,7 +37,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("fly_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,26 +47,49 @@ tracks/0/keys = {
 "values": [0, 3]
 }
 
+[sub_resource type="Animation" id="Animation_e5dm6"]
+resource_name = "land"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("land_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3se5j"]
 _data = {
 "RESET": SubResource("Animation_4sr4e"),
-"flare": SubResource("Animation_mgrcd")
+"flare": SubResource("Animation_mgrcd"),
+"land": SubResource("Animation_e5dm6")
 }
 
 [node name="parachute" type="Node2D"]
+script = ExtResource("1_pcfbm")
 
 [node name="shadow" type="Polygon2D" parent="."]
 position = Vector2(-1, 11)
 color = Color(0.192157, 0.192157, 0.192157, 0.607843)
 polygon = PackedVector2Array(-23, 29, -23, 29, 2, 34, 23, 31, 35, 24, 32, 12, 22, 4, -3, 0, -24, 3, -36, 16)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="fly_sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_miujp")
 vframes = 4
 region_enabled = true
 region_rect = Rect2(0, 824, 88, 256)
+
+[node name="land_sprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_miujp")
+vframes = 8
+frame = 1
+region_enabled = true
+region_rect = Rect2(106, 778, 65, 302)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

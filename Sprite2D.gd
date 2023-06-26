@@ -10,6 +10,9 @@ var drift_bump_direction = Vector3();
 var drift_bump_forward = Vector3(0.0, -0.001, 0.0);
 
 var end_scale = Vector3(0.223373, 0.223373, 1);
+signal landing_signal;
+
+var shadow: Polygon2D;
 
 func is_close_enough(v1: Vector3, v2: Vector3, tolerance: float) -> bool:
 	return (v1 - v2).length() < tolerance
@@ -19,6 +22,8 @@ func _ready():
 	mode7 = mat.get_shader_parameter('TRANSFORM');	
 	mode7 = mode7.scaled(Vector3(2.0,2.0,1));
 	print('initial transform: ', mode7);
+	shadow = get_node("/root/gameplay/parachute/shadow");
+	shadow.hide();
 
 
 func _process(delta):
@@ -43,7 +48,11 @@ func _process(delta):
 	mode7 = mode7.scaled(Vector3(0.999,0.999,1));
 	if(is_close_enough(mode7.basis.get_scale(), end_scale, 0.2)):
 		print("End game");
+		emit_signal("landing_signal");
 		return;
+	
+	if(is_close_enough(mode7.basis.get_scale(), Vector3(0.323373, 0.323373, 1), 0.2)):
+		shadow.show();;
 	# (0.235471, 0.166823, 0), Y: (-0.166823, 0.235471, 0), Z: (0, 0, 1), O: (0.63017, -0.613187, 0)]
 	
 	drift_update -= drift_bump_direction; #reset the drift bump
