@@ -14,6 +14,12 @@ signal landing_signal;
 
 var shadow: Polygon2D;
 
+func scale_polygon(polygon: Polygon2D, scale_factor: Vector2) -> void:
+	var points = polygon.polygon
+	for i in range(points.size()):
+		points[i] *= scale_factor
+	polygon.polygon = points
+
 func is_close_enough(v1: Vector3, v2: Vector3, tolerance: float) -> bool:
 	return (v1 - v2).length() < tolerance
 
@@ -23,6 +29,7 @@ func _ready():
 	mode7 = mode7.scaled(Vector3(2.0,2.0,1));
 	print('initial transform: ', mode7);
 	shadow = get_node("/root/gameplay/parachute/shadow");
+	scale_polygon(shadow, Vector2(0.4,0.4));
 	shadow.hide();
 
 
@@ -52,11 +59,14 @@ func _process(delta):
 		return;
 	
 	if(is_close_enough(mode7.basis.get_scale(), Vector3(0.323373, 0.323373, 1), 0.2)):
-		shadow.show();;
+		shadow.show();
+		
+	if(shadow.is_visible_in_tree()):
+		scale_polygon(shadow, Vector2(1.003,1.003));
 	# (0.235471, 0.166823, 0), Y: (-0.166823, 0.235471, 0), Z: (0, 0, 1), O: (0.63017, -0.613187, 0)]
 	
 	drift_update -= drift_bump_direction; #reset the drift bump
-	rotation_angle = 0.0; # reset rotation angle
+	rotation_angle = 0.0; # reset rotation anglel
 		
 	var mat = get_material();
 	mat.set_shader_parameter('DEPTH', depth);
