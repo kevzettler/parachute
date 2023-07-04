@@ -59,6 +59,7 @@ func _process(delta):
 		return;
 	
 	if(is_close_enough(mode7.basis.get_scale(), Vector3(0.323373, 0.323373, 1), 0.2)):
+		depth.y += 0.01;
 		shadow.show();
 		
 	if(shadow.is_visible_in_tree()):
