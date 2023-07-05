@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceyvv55vvt0x7"]
+
+[ext_resource type="Shader" path="res://gameplay.gdshader" id="1_tib1r"]
+[ext_resource type="Texture2D" uid="uid://cbfmpnab287u7" path="res://landmass.png" id="2_qc2uc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r42bo"]
+shader = ExtResource("1_tib1r")
+shader_parameter/TRANSFORM = null
+shader_parameter/DEPTH = null
+shader_parameter/REPEAT_X = null
+shader_parameter/REPEAT_Y = null
+shader_parameter/FLIP = null
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_r42bo")
+texture = ExtResource("2_qc2uc")
+
+[node name="Node2D" type="Node2D" parent="Polygon2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Polygon2D/Node2D"]
