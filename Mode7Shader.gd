@@ -3,9 +3,9 @@ extends Polygon2D
 func _ready():
 	var uvs = [
 		Vector2(0, 0),  # Top-left corner
-		Vector2(1, 0),  # Top-right corner
-		Vector2(1, 1),  # Bottom-right corner
-		Vector2(0, 1)   # Bottom-left corner
+		Vector2(1024, 0),  # Top-right corner
+		Vector2(1024, 1024),  # Bottom-right corner
+		Vector2(0, 1024)   # Bottom-left corner
 	]
 	uv = uvs		
 	update_polygon()

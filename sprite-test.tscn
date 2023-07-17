@@ -23,7 +23,6 @@ uv = PackedVector2Array(0, 0, 1, 2.08165e-12, 1, 1, 2.08165e-12, 1)
 script = ExtResource("3_cuy37")
 
 [node name="Mode7Parent" type="Node2D" parent="Mode7Shader"]
-visible = false
 script = ExtResource("3_2cd1r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Mode7Shader/Mode7Parent"]
