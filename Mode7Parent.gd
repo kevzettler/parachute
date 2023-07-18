@@ -24,23 +24,25 @@ func _process(_delta: float):
 	SCREEN_SIZE = get_viewport().size
 	var material = node_mode7.material # should be a ShaderMatrial
 	var transform = material.get_shader_parameter("TRANSFORM")
-	print("What is transform??", transform.x.x);
 	var depth = material.get_shader_parameter("DEPTH")
 	# Create perspective matrix
 	var perspective_matrix = create_2d_perspective_matrix(depth)
-	# Create view matrix from TRANFORM. Node that Z row is skipped, just like in the original shader.
+	# Create view matrix from TRANFORM. Note that Z row is skipped, just like in the original shader.
 	var view_matrix = Basis(
 		Vector3(transform.x.x, transform.x.y, transform.x.z), 
 		Vector3(transform.y.x, transform.y.y, transform.y.z), 
-		Vector3())
+		Vector3.ZERO)
 	
 	# Transform to range [-1, 1] from world space
 	var worldpos = (global_position / Vector2(SCREEN_SIZE.x / 2.0, SCREEN_SIZE.y / 2.0)) - Vector2.ONE
 	var mat = perspective_matrix * view_matrix # May want to reverse order? I don't remember which way is correct
 	var pos = mult_position_by_basis(worldpos, mat)
-	if (pos.z > 0.0):
+	
+	print("sprite position = ", pos);
+	#if (pos.z > 0.0):
 		# Transform back to world space
-		node_sprite.global_position = (Vector2(pos.x, pos.y) + Vector2.ONE) * (SCREEN_SIZE / 2)
-		node_sprite.show()
-	else:
-		node_sprite.hide()
+	#node_sprite.global_position = (Vector2(pos.x, pos.y) + Vector2.ONE) * (SCREEN_SIZE / 2)
+	node_sprite.show()
+	#else:
+	#	print("hiding sprite Z index is 0");
+	#	node_sprite.hide()

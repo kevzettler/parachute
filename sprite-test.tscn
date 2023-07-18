@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceyvv55vvt0x7"]
+[gd_scene load_steps=8 format=3 uid="uid://ceyvv55vvt0x7"]
 
 [ext_resource type="Shader" path="res://gameplay.gdshader" id="1_tib1r"]
+[ext_resource type="Script" path="res://hideonstart.gd" id="2_m4jlq"]
 [ext_resource type="Texture2D" uid="uid://cbfmpnab287u7" path="res://landmass.png" id="2_qc2uc"]
 [ext_resource type="Script" path="res://Mode7Parent.gd" id="3_2cd1r"]
 [ext_resource type="Script" path="res://Mode7Shader.gd" id="3_cuy37"]
@@ -9,23 +10,28 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r42bo"]
 shader = ExtResource("1_tib1r")
 shader_parameter/TRANSFORM = Projection(1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1)
-shader_parameter/DEPTH = Vector2(2.08165e-12, 2.08165e-12)
+shader_parameter/DEPTH = Vector2(2.08165e-12, 1)
 shader_parameter/REPEAT_X = null
 shader_parameter/REPEAT_Y = null
 shader_parameter/FLIP = null
 
 [node name="Node2D" type="Node2D"]
 
+[node name="DebugSprite" type="Sprite2D" parent="."]
+position = Vector2(513, 513)
+texture = ExtResource("2_qc2uc")
+script = ExtResource("2_m4jlq")
+
 [node name="Mode7Shader" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_r42bo")
 texture = ExtResource("2_qc2uc")
-uv = PackedVector2Array(0, 0, 1, 2.08165e-12, 1, 1, 2.08165e-12, 1)
 script = ExtResource("3_cuy37")
 
 [node name="Mode7Parent" type="Node2D" parent="Mode7Shader"]
 script = ExtResource("3_2cd1r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Mode7Shader/Mode7Parent"]
+position = Vector2(442, 451)
 texture = ExtResource("4_j2bgp")
 region_enabled = true
 region_rect = Rect2(2, 2, 67, 36)
