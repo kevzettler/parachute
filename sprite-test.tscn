@@ -11,11 +11,11 @@
 shader = ExtResource("1_tib1r")
 shader_parameter/TRANSFORM = Projection(1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1)
 shader_parameter/DEPTH = Vector2(2.08165e-12, 1)
-shader_parameter/REPEAT_X = null
+shader_parameter/REPEAT_X = true
 shader_parameter/REPEAT_Y = null
 shader_parameter/FLIP = null
 
-[node name="Node2D" type="Node2D"]
+[node name="DebugRoot" type="Node2D"]
 
 [node name="DebugSprite" type="Sprite2D" parent="."]
 position = Vector2(513, 513)
@@ -31,7 +31,7 @@ script = ExtResource("3_cuy37")
 script = ExtResource("3_2cd1r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Mode7Shader/Mode7Parent"]
-position = Vector2(442, 451)
+position = Vector2(844, 217)
 texture = ExtResource("4_j2bgp")
 region_enabled = true
 region_rect = Rect2(2, 2, 67, 36)
